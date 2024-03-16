@@ -12,20 +12,6 @@ pir = MotionSensor(4)
 # every time it record, plus 1 the variable
 # use counter in vid name
 
-app = Flask("__name__")
-
-@app.route("/")
-def index():
-    return render_template('index.html', 'videos')
-
-@app.route("/test")
-def hello_world2():
-    return "hello"
-
-if __name__ == '__main__':
-    app.run(debug=True, port=5040, host='0.0.0.0')
-
-
 def recording():
     pir.wait_for_no_motion()
     pir.wait_for_motion()
@@ -36,9 +22,25 @@ def recording():
     # i = +1
     # pir.wait_for_no_motion()
 
+app = Flask("__name__")
+
+
+@app.route("/")
+def index():
+    recording()
+    return render_template('index.html', 'videos')
+
+@app.route("/test")
+def hello_world2():
+    return "hello"
+
+if __name__ == '__main__':
+    app.run(debug=True, port=5040, host='0.0.0.0')
+
+#open website from macbook next time
+
 
     
-
 # Look for motion (done)
 # recordMotion (stop looking for motion) (done)
 # get most recent video (already, does it)
