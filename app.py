@@ -32,6 +32,7 @@ def recording():
     camera.start_recording('/home/pi/Desktop/Snapshots/video.h264')
     sleep(4)
     camera.stop_recording()
+    camera.close()
     # i = +1
     # pir.wait_for_no_motion()
 
